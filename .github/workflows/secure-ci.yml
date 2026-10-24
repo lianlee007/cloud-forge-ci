@@ -1,0 +1,49 @@
+name: Secure CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    name: control-${{ matrix.control }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [lint, tests, sast, secrets, sca]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instalar herramientas
+        run: python -m pip install -r requirements-dev.txt
+      - name: Ejecutar control
+        run: bash ci/check.sh "${{ matrix.control }}"
+      - name: Conservar informe incluso si falla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-${{ matrix.control }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
+  package:
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Empaquetar codigo aprobado
+        run: |
+          mkdir -p dist
+          zip -r dist/cloud-forge.zip app requirements.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: codigo-aprobado
+          path: dist/cloud-forge.zip
+          retention-days: 7

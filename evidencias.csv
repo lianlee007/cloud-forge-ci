@@ -1,0 +1,8 @@
+experimento,commit_fallo,control_esperado,control_observado,regla_aviso,archivo_paquete,package_estado,correccion,commit_corregido,enlace_ejecucion,reporte
+Linea base,,todos,,,,,,,,
+Lint,,lint,,,,,,,,
+Pruebas,,tests,,,,,,,,
+SAST,,sast,,,,,,,,
+Secretos,,secrets,,,,,,,,
+SCA,,sca,,,,,,,,
+Final,,todos,,,,,,,,
