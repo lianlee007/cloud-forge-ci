@@ -1,8 +1,8 @@
 experimento,commit_fallo,control_esperado,control_observado,regla_aviso,archivo_paquete,package_estado,correccion,commit_corregido,enlace_ejecucion,reporte
-Linea base,,todos,,,,,,,,
-Lint,,lint,,,,,,,,
-Pruebas,,tests,,,,,,,,
-SAST,,sast,,,,,,,,
-Secretos,,secrets,,,,,,,,
-SCA,,sca,,,,,,,,
-Final,,todos,,,,,,,,
+Linea base,N/A,todos,todos_aprobados,Ninguna (linea base limpia),app/ y tests/,aprobado (success),N/A,6bafbb752ec22a687451f3650ef32f2bfe6212f7,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40048784380,reporte-lint; reporte-tests; reporte-sast; reporte-secrets; reporte-sca; codigo-aprobado
+Lint,9238787e4def2dd081c793aaa991491a59243236,lint,control-lint,F401 `os` imported but unused,app/calculadora.py:1,omitido (skipped),Eliminar import os no utilizado,d386f19733fd7b68b226620b6eed5a9490effbf0,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40053585502,reporte-lint
+Pruebas,8c1dda4fe208368dec564af19d4fbfef3366efa0,tests,control-tests,AssertionError: assert -1 == 5 (test_suma),tests/test_calculadora.py / app/calculadora.py:2,omitido (skipped),Restaurar return a + b en funcion sumar,7f57250c30407b52c765ee4c8b5e65a174148345,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40055017418,reporte-tests
+SAST,b55ffaf710a57bb05df4bf8c3843316b905c78b1,sast,control-sast,B307: Use of possibly insecure function - consider using safer ast.literal_eval,app/calculadora.py:10,omitido (skipped),Eliminar funcion ejemplo_inseguro con llamada a eval,40264c52124c3dab58593d0d06d855581266dbc0,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40055175920,reporte-sast
+Secretos,3945b5d2aed08d26804fe88048ba9079825f15e7,secrets,control-secrets,cloud-forge-demo (Token sintetico de laboratorio - HIGH),app/demo.env:1,omitido (skipped),Eliminar archivo app/demo.env con token sintetico,4d36a791f7f2e461707735655adf500dda71f49b,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40055338070,reporte-secrets
+SCA,fc3c436515a90095ee36d5833da5438771f4ef90,sca,control-sca,CVE-2018-18074 / CVE-2023-32681 (CRITICAL/HIGH),requirements.txt (requests==2.19.1),omitido (skipped),Eliminar dependencia obsoleta e innecesaria de requirements.txt,74a008ef0ae7f31d6ae9405d977e76ff6af76461,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40055438098,reporte-sca
+Final,N/A,todos,todos_aprobados,Ninguna (arbol limpio y corregido),app/ y tests/,aprobado (success),N/A,74a008ef0ae7f31d6ae9405d977e76ff6af76461,https://github.com/lianlee007/cloud-forge-ci/actions/runs/40055564679,reporte-lint; reporte-tests; reporte-sast; reporte-secrets; reporte-sca; codigo-aprobado
